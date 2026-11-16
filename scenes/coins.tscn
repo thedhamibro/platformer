@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://cmbr7m5n8oy61"]
+
+[ext_resource type="Texture2D" uid="uid://dick5m3ybn5j8" path="res://z/MonedaD.png" id="1_b8t5o"]
+[ext_resource type="Script" path="res://scenes/coins.gd" id="2_ijvmc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nltjx"]
+atlas = ExtResource("1_b8t5o")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pj633"]
+atlas = ExtResource("1_b8t5o")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfcjk"]
+atlas = ExtResource("1_b8t5o")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sadp3"]
+atlas = ExtResource("1_b8t5o")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grxnc"]
+atlas = ExtResource("1_b8t5o")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ggoud"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nltjx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pj633")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfcjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sadp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grxnc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mcbfm"]
+radius = 8.06226
+
+[sub_resource type="Gradient" id="Gradient_k8rcx"]
+offsets = PackedFloat32Array(0, 0.775)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hl8tw"]
+gradient = SubResource("Gradient_k8rcx")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="coins" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ggoud")
+autoplay = "default"
+frame_progress = 0.186402
+script = ExtResource("2_ijvmc")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_mcbfm")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 1, 0.505882, 1)
+energy = 0.7
+texture = SubResource("GradientTexture2D_hl8tw")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
