@@ -24,7 +24,6 @@ var hitDamage = 0
 # Node References
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var damage_zone: Area2D = $"Damage Zone"  # Ensure the path is correct
-@onready var gameover: Control = $"../CanvasLayer/Control"
 
 # Physics Process
 
@@ -46,15 +45,12 @@ func _physics_process(delta):
 	move_and_slide()
 	check_hitbox()
 
+	# Fell off the map: lose a life like any other damage
 	if position.y > 900:
-		get_tree().change_scene_to_file("res://scenes/gameover.tscn")
+		_on_damage()
 	
 # Movement Handling
 func handle_movement(delta):
-	if Global.lives == 0:
-		death()
-		Global.lives = Global.max_lives
-
 	if !is_on_floor():
 		velocity.y += gravity * delta
 
@@ -121,7 +117,7 @@ func check_hitbox():
 	var damage_areas = damage_zone.get_overlapping_areas()
 	if damage_zone and is_attacking and !attack_applied:
 		for area in damage_areas:
-			if area and area.get_parent() is Slime:
+			if area and area.get_parent() is Enemy:
 				var enemy = area.get_parent()
 				if enemy and !enemy.dead and !enemy.hurt:
 					enemy.take_hit(self.position)
@@ -133,7 +129,10 @@ func _on_animation_finished(anim_name: String) -> void:
 func _on_damage() -> void:
 	Global.lives -= 1
 	emit_signal("update_hearts")
-	respawn()
+	if Global.lives <= 0:
+		game_over()
+	else:
+		respawn()
 
 func _on_player_reached_checkpoint(position) -> void:
 	last_checkpoint_position = position
@@ -143,14 +142,14 @@ func respawn():
 	self.position = last_checkpoint_position
 	emit_signal("update_hearts")
 	
-func death():
-	#gameover.visible = true
-	#get_tree().paused = true
-	get_tree().reload_current_scene()
+func game_over() -> void:
+	var screen = get_tree().current_scene.get_node_or_null("GameManager/GUI/Gameover")
+	if screen:
+		screen.show_game_over()
+	else:
+		# Scene has no HUD (e.g. a test scene): just restart the level
+		Global.lives = Global.max_lives
+		get_tree().reload_current_scene()
 
 func jump():
 	velocity.y = JUMP_VELOCITY
-
-func reduce_health():
-	Global.lives -= 1
-	emit_signal("update_hearts")

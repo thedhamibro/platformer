@@ -214,6 +214,19 @@ sprite_frames = SubResource("SpriteFrames_dk104")
 autoplay = "default"
 frame_progress = 0.0304627
 
+[node name="Score" type="Label" parent="."]
+texture_filter = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -389.0
+offset_top = 195.0
+offset_right = -301.0
+offset_bottom = 218.0
+scale = Vector2(4, 4)
+theme_override_font_sizes/font_size = 16
+text = "Score: 0"
+
 [node name="PauseMenu" parent="." instance=ExtResource("4_ho2gv")]
 anchors_preset = 15
 anchor_right = 1.0

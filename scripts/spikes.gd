@@ -5,4 +5,3 @@ extends Node2D
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
 		body._on_damage()
-		body.emit_signal("update_hearts")

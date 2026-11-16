@@ -2,12 +2,12 @@
 
 A 2D action platformer made in Godot 4.3.
 
-Run and jump through five levels, fight slimes, skulls and other enemies, collect coins and dodge spikes. Checkpoints save your progress, and you get a game over when your hearts run out.
+Run and jump through five levels, fight slimes and skulls, collect coins and dodge spikes. Checkpoints save your progress, and you get a game over when your hearts run out.
 
 ## Features
 
 - Player movement, jumping and left/right attacks
-- Enemies (slime, skull, canine) and hazards (spikes, kill zones)
+- Enemies (slimes, skulls) and hazards (spikes, kill zones)
 - Health system with hearts, coins and checkpoints
 - Five levels with doors, moving platforms and torches
 - Main menu with a parallax background, scene transitions and a game-over screen
