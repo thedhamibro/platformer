@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="platformer"
-run/main_scene="res://scripts/main menu/main_menu.tscn"
+run/main_scene="res://ui/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Transition="*res://scripts/transition.tscn"
-Global="*res://scenes/global.gd"
+Transition="*res://ui/transition.tscn"
+Global="*res://globals/global.gd"
 
 [display]
 
@@ -27,7 +27,7 @@ window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
-mouse_cursor/custom_image="res://assets/Cursors_v2/Dark/Arrows/Arrow2.png"
+mouse_cursor/custom_image="res://assets/packs/Cursors_v2/Dark/Arrows/Arrow2.png"
 
 [editor_plugins]
 

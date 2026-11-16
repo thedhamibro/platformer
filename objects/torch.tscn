@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://38mtm7liyr08"]
+
+[ext_resource type="Texture2D" uid="uid://c8v3oich1s7ch" path="res://assets/packs/collections/PixelPlatformerSet1v.1.1/Anim/torch-C-01.png" id="1_a7mnq"]
+[ext_resource type="Texture2D" uid="uid://8aglcufhdcq7" path="res://assets/packs/collections/PixelPlatformerSet1v.1.1/Anim/torch-C-02.png" id="2_ohjpc"]
+[ext_resource type="Texture2D" uid="uid://c0tfo05wf0fuo" path="res://assets/packs/collections/PixelPlatformerSet1v.1.1/Anim/torch-C-03.png" id="3_edl3t"]
+[ext_resource type="Texture2D" uid="uid://dsqlrmxfs8bt8" path="res://assets/packs/collections/PixelPlatformerSet1v.1.1/Anim/torch-C-04.png" id="4_t1wng"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2xyeg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_a7mnq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ohjpc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_edl3t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_t1wng")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eoxyc"]
+size = Vector2(16, 24)
+
+[sub_resource type="Gradient" id="Gradient_5l0af"]
+offsets = PackedFloat32Array(0, 0.416667, 0.733333)
+colors = PackedColorArray(1, 1, 1, 1, 0.299548, 0.299547, 0.299547, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ke8g7"]
+gradient = SubResource("Gradient_5l0af")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
+[node name="Torch" type="StaticBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2xyeg")
+autoplay = "default"
+frame_progress = 0.608473
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_eoxyc")
+disabled = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.8
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_ke8g7")
