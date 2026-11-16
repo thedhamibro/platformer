@@ -1,0 +1,146 @@
+[gd_scene load_steps=9 format=3 uid="uid://ot854hojhsw"]
+
+[ext_resource type="Script" path="res://scripts/main menu/main_menu.gd" id="1_54lxv"]
+[ext_resource type="Script" path="res://scripts/main menu/bg.gd" id="2_3a21h"]
+[ext_resource type="Texture2D" uid="uid://djf07rtrwvsth" path="res://assets/collections/oak_woods_v1.0/background/background_layer_1.png" id="2_jtct5"]
+[ext_resource type="Texture2D" uid="uid://d2vknsy840wjs" path="res://assets/collections/oak_woods_v1.0/background/background_layer_2.png" id="3_wb316"]
+[ext_resource type="FontFile" uid="uid://bs4bkcdujygs5" path="res://theme/ThaleahFat.ttf" id="4_58rtp"]
+[ext_resource type="Texture2D" uid="uid://cuwum8rcdi60x" path="res://assets/collections/oak_woods_v1.0/background_layer_3.png" id="4_gr0qj"]
+[ext_resource type="FontFile" uid="uid://b48ksk6lhetjh" path="res://theme/Rockboxcond12.ttf" id="4_so7t8"]
+[ext_resource type="Theme" uid="uid://bhicuivbhkgnm" path="res://theme/DEFAULT.tres" id="10_bia13"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchor_right = 1.03
+anchor_bottom = 1.0
+offset_right = -57.6
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_54lxv")
+
+[node name="Logo" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -541.0
+offset_right = 960.0
+offset_bottom = 541.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Medieval" type="Label" parent="Logo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -516.5
+offset_top = -391.5
+offset_right = 516.5
+offset_bottom = -134.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_58rtp")
+theme_override_font_sizes/font_size = 280
+text = "Mediveal"
+metadata/_edit_group_ = true
+
+[node name="Souls" type="Label" parent="Logo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -233.0
+offset_right = 136.0
+offset_bottom = -91.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_so7t8")
+theme_override_font_sizes/font_size = 150
+text = "SOULS"
+metadata/_edit_group_ = true
+
+[node name="BG" type="ParallaxBackground" parent="."]
+script = ExtResource("2_3a21h")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="BG"]
+motion_scale = Vector2(0.5, 0.09)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/ParallaxLayer"]
+position = Vector2(942, 520.5)
+scale = Vector2(6.6375, 6.48333)
+texture = ExtResource("2_jtct5")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="BG"]
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/ParallaxLayer2"]
+position = Vector2(945, 521.5)
+scale = Vector2(6.6375, 6.43889)
+texture = ExtResource("3_wb316")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="BG"]
+motion_scale = Vector2(0.9, 0.9)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/ParallaxLayer3"]
+position = Vector2(945, 521.5)
+scale = Vector2(6.6375, 6.43889)
+texture = ExtResource("4_gr0qj")
+
+[node name="Buttons" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = 92.0
+offset_right = 168.0
+offset_bottom = 378.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Buttons"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Buttons/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="start game" type="Button" parent="Buttons/HBoxContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("10_bia13")
+theme_override_fonts/font = ExtResource("4_58rtp")
+theme_override_font_sizes/font_size = 70
+text = "START GAME"
+icon_alignment = 1
+
+[node name="Control" type="Control" parent="Buttons/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="quit" type="Button" parent="Buttons/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("10_bia13")
+theme_override_fonts/font = ExtResource("4_58rtp")
+theme_override_font_sizes/font_size = 70
+text = "QUIT GAME"
+
+[connection signal="pressed" from="Buttons/HBoxContainer/VBoxContainer/start game" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="Buttons/HBoxContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
