@@ -1,0 +1,17 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+export_presets.cfg
+
+# Export builds
+*.exe
+*.pck
+*.wasm
+/build/
+/export/
+
+# Editor / OS junk
+*.tmp
+.DS_Store
+__MACOSX/
+.vscode/
